@@ -1,0 +1,55 @@
+<div id='logged_in_container'>
+  <div id='header'>
+    <div class='left' style='width:70%;'>
+      <span id='company_name'><%= current_company.name -%> (<%= user_default_branch.name -%>)</span>
+      <%= current_accounting_period %>
+    </div>
+    <div class='right righta' style='width:25%;padding-right:5px;'>
+      <%= current_user.name %> |
+      <%= link_to 'Close the day', close_accounting_days_path, :method => :put %> |
+      <%= link_to 'Log out', user_session_path, :method => :delete %> 
+    </div>
+  </div>
+  <div id='topbar'>
+    <div class='left'>
+      <ul class='jd_menu'>
+         <li><%= link_to 'Entries', account_transactions_path %></li>
+         <li><%= link_to 'Reports', '#' %>
+            <ul>
+                <li><%= link_to 'Trial Balance', trial_balance_path %></li>
+                <li><%= link_to 'Day Book', day_book_path %></li>
+                <li><%= link_to 'Profit and Loss', profit_and_loss_statement_path %></li>
+            </ul>
+         </li>     
+      </ul>
+    </div>   
+    <div class='right'>
+      <ul class='jd_menu'>
+         <li><%= link_to 'Account Settings', '#' %>
+           <ul>
+             <li><%= link_to 'Accounts', accounts_path %></li>
+             <li><%= link_to 'Account Groups', account_groups_path %></li>
+           </ul>
+         </li>
+         <li style='margin-left:4px;'><%= link_to 'Inventory Settings', '#' %>
+           <ul>
+             <li><%= link_to 'Inventory Items', inventory_items_path %></li>
+             <li><%= link_to 'Measurement Units', inventory_unit_of_measurements_path %></li>
+             <li><%= link_to 'Inventory Groups', inventory_groups_path %></li>
+           </ul>
+         </li>     
+      </ul>      
+    </div>
+  </div>
+  <div style='padding:10px;'>
+    <div style='float:left;width:80%;'>
+      <%= yield %>	  
+    </div>
+    <div style='float:right;width:15%;border:1px solid green;height:400px;text-align:right;margin:10px;padding:10px;'>
+      Vouchers <br />
+        <%= button_to 'Journal Voucher', new_account_transaction_path, :method => :get, :style => "color:#050;font:bold 84% 'trebuchet ms',helvetica,sans-serif;background-color:#fed;border:1px solid;border-color: #696 #363 #363 #696;cursor:pointer;" %> <br />
+        <%= button_to 'Receipt Voucher', new_receipt_voucher_entry_path, :method => :get, :style => "color:#050;font:bold 84% 'trebuchet ms',helvetica,sans-serif;background-color:#fed;border:1px solid;border-color: #696 #363 #363 #696;cursor:pointer;" %>
+      </ul>
+    </div>	
+  </div>
+</div>

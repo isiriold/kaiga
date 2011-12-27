@@ -1,0 +1,44 @@
+<h1>Editing inventory_item</h1>
+
+<% form_for(@inventory_item) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :lot_size %><br />
+    <%= f.text_field :lot_size %>
+  </p>
+  <p>
+    <%= f.label :buy_price %><br />
+    <%= f.text_field :buy_price %>
+  </p>
+  <p>
+    <%= f.label :sale_price %><br />
+    <%= f.text_field :sale_price %>
+  </p>
+  <p>
+    <%= f.label :inventory_group_id %><br />
+    <%= f.select :inventory_group_id, inventory_groups_options_array %>
+  </p>
+  <p>
+    <%= f.label :consumable %><br />
+    <%= f.check_box :consumable %>
+  </p>
+  <p>
+    <%= f.label :discount_allowed %><br />
+    <%= f.check_box :discount_allowed %>
+  </p>
+  <p>
+    <%= f.label :inventory_unit_of_measurement_id %><br />
+    <%= f.select :inventory_unit_of_measurement_id, inventory_unit_of_measurements_options_array %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @inventory_item %> |
+<%= link_to 'Back', inventory_items_path %>

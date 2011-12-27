@@ -1,0 +1,29 @@
+<div>
+  <div class='left'>
+    Expense <br />
+    <% expense_acc_hash = {} -%>
+    <% @expenses.each do |expense| %>      
+       <% unless expense_acc_hash[expense.account.account_group_id] == 1 -%>
+         <div style='margin-left:15px;'><%= expense.account.account_group.name %> </div>
+       <% end -%>
+       <div style='margin-left:30px;'>
+         <%= expense.account.name %>
+         <%= number_to_currency(expense.amount, :unit => 'Rs.') %>
+       </div>
+      <% expense_acc_hash[expense.account.account_group.id] = 1 -%>
+    <% end %>
+  </div>
+  <div class='right'>
+    Income <br />
+    <% income_acc_hash = {} -%>
+    <% @incomes.each do |income| %>
+      <% unless income_acc_hash[income.account.account_group_id] == 1 -%>
+        <div style='margin-left:15px;'><%= income.account.account_group.name %> </div>
+      <% end -%>
+       <div style='margin-left:30px;'>
+         <%= income.account.name %>
+         <%= number_to_currency(income.amount, :unit => 'Rs.') %>
+      </div>      
+    <% end %>
+  </div>
+</div>

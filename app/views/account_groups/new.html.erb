@@ -1,0 +1,45 @@
+<h1>Add a new account group</h1>
+
+<% form_for(@account_group) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :cols => 30, :rows => 5 %>
+  </p>
+  <p>
+    <%= f.label :is_p_and_l_acct %><br />
+    <%= f.check_box :is_p_and_l_acct %>
+  </p>
+  <p>
+    <%= f.label :account_group_type_id %><br />
+    <%= f.select :account_group_type_id, account_group_type_options_array, { :include_blank => true }, :onchange => 'set_under_dropdown();' %>
+  </p>
+  <p>
+    <%= f.label :parent_id, 'Under' %><br />
+    <%= f.select :parent_id, [] %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', account_groups_path %>
+
+<div style='display:none;'>
+  <div id='income_select_id'>
+    <%= select_tag  
+  </div>
+</div>
+
+<script>
+
+function set_under_dropdown() {
+
+}
+
+</script>

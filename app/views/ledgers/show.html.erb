@@ -1,0 +1,22 @@
+<div>
+  Transaction List for <%= @account.name -%><br />
+  
+  <br />
+  
+  <table style='width:100%;' border='1' >
+    <tr>
+      <th>Account</th>
+      <th>Category</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>  
+  <% @account_transaction_items.each do |ati| %>
+    <tr>
+      <td><%=h ati.account.name %></td>      
+      <td><%= ati.category == 'Debit' ? 'Credit' : 'Debit' %></td>            
+      <td><%=h number_to_currency(ati.amount, :unit => 'Rs.') %></td>      
+      <td><%= ati.account_transaction.transaction_date %></td>      
+    </tr>
+  <% end %>
+  </table>
+</div>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  transaction_no: MyString
+  transaction_date: 2009-05-27
+  narrations: MyString
+
+two:
+  transaction_no: MyString
+  transaction_date: 2009-05-27
+  narrations: MyString

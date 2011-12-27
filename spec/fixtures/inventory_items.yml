@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  lot_size: 1
+  buy_price: 9.99
+  sale_price: 9.99
+  inventory_group_id: 1
+  consumable: false
+  discount_allowed: false
+  inventory_unit_of_measurement_id: 1
+
+two:
+  name: MyString
+  lot_size: 1
+  buy_price: 9.99
+  sale_price: 9.99
+  inventory_group_id: 1
+  consumable: false
+  discount_allowed: false
+  inventory_unit_of_measurement_id: 1

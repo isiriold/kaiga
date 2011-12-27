@@ -1,0 +1,14 @@
+<table style='width:100%;' border='1px'>
+  <tr>
+    <th>Account</th>
+    <th>Debit</th>
+    <th>Credit</th>
+  </tr>
+  <% @trial_balance_array.each do |trial_balance| %>
+    <tr>
+      <td><%= trial_balance['account_name'] %></td>
+      <td><%= number_to_currency(trial_balance['amount'], :unit => 'Rs.') if trial_balance['type'] == 'Debit' %></td>
+      <td><%= number_to_currency(trial_balance['amount'], :unit => 'Rs.') if trial_balance['type'] == 'Credit' %></td>            
+    </tr>
+  <% end %>
+</table>

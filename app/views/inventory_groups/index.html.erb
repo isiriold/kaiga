@@ -1,0 +1,20 @@
+<h1>Listing inventory_groups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @inventory_groups.each do |inventory_group| %>
+  <tr>
+    <td><%=h inventory_group.name %></td>
+    <td><%= link_to 'Show', inventory_group %></td>
+    <td><%= link_to 'Edit', edit_inventory_group_path(inventory_group) %></td>
+    <td><%= link_to 'Destroy', inventory_group, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New inventory_group', new_inventory_group_path %>

@@ -1,0 +1,26 @@
+<h1>Editing account</h1>
+
+<% form_for(@account) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :account_group_id %><br />
+    <%= select_tag 'account[account_group_id]', grouped_options_for_select(grouped_account_group_options_array, @account.account_group_id) %>
+  </p>
+  <% f.fields_for :account_balances do |ab| %>
+    <p>
+      <%= ab.label :opening_balance %><br />
+      <%= ab.text_field :opening_balance %> <%= current_day.for_date %>
+    </p>  
+  <% end %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @account %> |
+<%= link_to 'Back', accounts_path %>

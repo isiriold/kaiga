@@ -1,0 +1,13 @@
+<h1>Please select the date when the accounting begins, to continue</h1>
+
+<% form_for(@accounting_day) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :for_date, 'Date the accounting starts' %><br />
+    <%= f.date_select :for_date %>
+  </p>
+  <p>
+    <%= f.submit 'Add this date' %>
+  </p>
+<% end %>

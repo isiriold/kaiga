@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  branch_id: 1
+  unit_name: MyString
+  unit_symbol: MyString
+  sub_unit_name: MyString
+  sub_unit_symbol: MyString
+  unit_value: 1
+
+two:
+  branch_id: 1
+  unit_name: MyString
+  unit_symbol: MyString
+  sub_unit_name: MyString
+  sub_unit_symbol: MyString
+  unit_value: 1

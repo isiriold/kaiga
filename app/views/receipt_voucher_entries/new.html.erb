@@ -1,0 +1,92 @@
+<% form_for(@receipt_voucher_entry) do |f| %>
+<div>
+  <%= f.error_messages %>
+</div>
+<div>
+    Cash/Bank Ledger: <%= f.select :cash_or_bank_account_id, @cash_bank_accounts.map{|m| [m.name, m.id.to_s]} %> <br /><br />
+    <br /><br />
+    <table style='width:100%;height:100%;border:1px solid black;' cellspacing='0' cellpadding='0'>
+      <tr>
+        <th style='border:1px solid black;'>Particulars</th>
+        <th style='border:1px solid black;'>Amount</th>
+      </tr>
+      <% i = 0 %>
+      <% 10.times do %>
+        <tr>
+          <td id='<%= "td_particular_#{i}" %>'><%= f.text_field "particular_#{i}", :style => 'border:0px;', :onblur => "select_inventory(#{i});" %></td>
+          <td id='<%= "td_amount_#{i}" %>'><%= f.text_field "amount_#{i}", :style => 'border:0px;' %></td>
+        </tr>
+      <% i += 1 %>
+      <% end %>
+    </table>
+    <br /><br />
+    Narrations <br />
+    <%= f.text_area :narrations, {:rows => 3, :cols => 103} %>
+    <br />
+    <%= submit_tag 'Create receipt' %>
+</div>
+<% end %>
+<div style='position:absolute;width:500px;height:200px;background:gray;left:750px;top:300px;display:none;' id='inventory_select_popup'>
+  Select inventory: <br />
+  <% i = 0 %>
+  <% form_tag '', :id => 'inventory_form' do %>
+  <table>
+  <% 5.times do  %>
+    <tr>
+      <td><%= select_tag "inventory_name_#{i}", options_for_select([''] + @all_inventories.map{|m| [m.name, m.id]}) %></td>
+      <td><%= text_field_tag "inventory_quantity_#{i}" %></td>
+      <td><%= text_field_tag "inventory_amount_#{i}" %></td>
+      <% i += 1 %>     
+    </tr>
+  <% end %>
+  </table>
+  <% end %>
+  <%= button_to_function 'Ok', 'set_inventory();' %>
+</div>
+<script>
+  var particular_index;
+  var accounts_arr = ['<%= @all_accounts.map{|m| m.name}.join("', '") -%>'];
+  var all_inventories = <%= @all_inventories.to_json %>;
+  <% i = 0 %>
+  <% 10.times do %>  
+    $("#receipt_voucher_entry_particular_<%= i -%>").autocompleteArray(accounts_arr, { delay:200, autoFill:true });  
+    <% i += 1 %>
+  <% end %>  
+
+  function select_inventory(ind) {
+    var pos = $("#td_particular_"+ind).offset();  
+    var width = $("#td_particular_"+ind).width();
+    //show the menu directly over the placeholder
+    $("#inventory_select_popup").css( { "left": (pos.left + 25) + "px", "top":pos.top + 25 + "px" } );
+    $('#inventory_select_popup').show();
+    particular_index = ind;
+  }
+
+  function set_inventory() {
+    var td_value = $('#receipt_voucher_entry_particular_'+particular_index).val();
+    var selected_inventory =  [];
+    var selected_inventory_amount = [];
+    var j = 0;
+    for(i=0; i<5; i++) {
+      if($("#inventory_name_"+i).val() != '') {
+        var selected_inventory_name = $("#inventory_name_"+i+" option:selected").text();
+        selected_inventory[j] = "<input type='text' name='receipt_voucher_entry[selected_inventory_"+j+"]' value='"+selected_inventory_name+"' style='border:0px;' readonly='true' />";
+
+        var selected_inventory_amount_cost = parseInt($('#inventory_quantity_'+i).val()) * parseInt($('#inventory_amount_'+i).val())
+        selected_inventory_amount[j] = "<input type='text' name='receipt_voucher_entry[selected_inventory_amount_"+j+"]' value='"+selected_inventory_amount_cost+"' style='border:0px;' readonly='true' />";
+        j++;
+      }      
+    }
+    var td_html = $("#td_particular_"+particular_index).html();   
+    td_html += "<br />" + selected_inventory.join('<br />');
+    $('#td_particular_'+particular_index).html(td_html);
+    var td_amount_html = selected_inventory_amount.join('<br />');      
+    $('#td_amount_'+particular_index).html(td_amount_html);  
+    $('#receipt_voucher_entry_particular_'+particular_index).val(td_value);  
+  }
+
+  function reset_values() {
+    particular_index = null;
+    
+  }
+</script>

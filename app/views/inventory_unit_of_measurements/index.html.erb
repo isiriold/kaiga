@@ -1,0 +1,29 @@
+<div>
+  <div style='text-align:right;'>
+    <%= button_to 'Add a new unit of measurement', new_inventory_unit_of_measurement_path, :method => :get %>
+  </div>
+  <div>
+	<table style='width:100%;'>
+	  <tr>
+	    <th>Unit name</th>
+	    <th>Unit symbol</th>
+	    <th>Sub unit name</th>
+	    <th>Sub unit symbol</th>
+	    <th>Unit value</th>
+	  </tr>
+
+	<% @inventory_unit_of_measurements.each do |inventory_unit_of_measurements| %>
+	  <tr>
+	    <td><%=h inventory_unit_of_measurements.unit_name %></td>
+	    <td><%=h inventory_unit_of_measurements.unit_symbol %></td>
+	    <td><%=h inventory_unit_of_measurements.sub_unit_name %></td>
+	    <td><%=h inventory_unit_of_measurements.sub_unit_symbol %></td>
+	    <td><%=h inventory_unit_of_measurements.unit_value %></td>
+	    <td><%= link_to 'Show', inventory_unit_of_measurements %></td>
+	    <td><%= link_to 'Edit', edit_inventory_unit_of_measurement_path(inventory_unit_of_measurements) %></td>
+	    <td><%= link_to 'Destroy', inventory_unit_of_measurements, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+  </div>
+</div>

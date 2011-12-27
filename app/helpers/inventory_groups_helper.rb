@@ -1,0 +1,2 @@
+module InventoryGroupsHelper
+end

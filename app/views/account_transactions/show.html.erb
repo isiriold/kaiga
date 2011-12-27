@@ -1,0 +1,18 @@
+<p>
+  <b>Transaction no:</b>
+  <%=h @account_transaction.transaction_no %>
+</p>
+
+<p>
+  <b>Transaction date:</b>
+  <%=h @account_transaction.transaction_date %>
+</p>
+
+<p>
+  <b>Narrations:</b>
+  <%=h @account_transaction.narrations %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_transaction_path(@account_transaction) %> |
+<%= link_to 'Back', account_transactions_path %>

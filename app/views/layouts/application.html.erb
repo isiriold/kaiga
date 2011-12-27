@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>Accouting</title>
+	
+	<%= javascript_include_tag 'jquery-1.3.2.min', 'jquery-ui-1.7.1.custom.min', 'jrails', 'jquery.bgiframe', 'jquery.dimensions', 'jquery.positionBy', 'jquery.jdMenu', 'jquery.autocomplete' %>
+	<%= stylesheet_link_tag 'main', 'jquery.autocomplete' %>
+  
+  </head>
+
+  <body>
+  	<div id="container">  	
+  	    <div id='flash'>	
+  	      <%= flash[:notice] %>
+  	    </div>	
+       	    <% if current_user %>	 
+               <%= render :partial => 'layouts/logged_in' %>
+            <% else %>
+               <%= render :partial => 'layouts/logged_out' %>
+ 	    <% end %>
+  	</div>
+ </body>
+</html>
